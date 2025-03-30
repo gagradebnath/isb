@@ -12,7 +12,16 @@
             font-family: 'Arial', sans-serif;
             position: relative;
         }
-
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            background-color: #121212ee;
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            padding: 15px 0;
+            margin-bottom: 15px !important;
+        }
         .card {
             background-color: #24002386;
             border: 1px solid #333;
@@ -102,7 +111,7 @@
     <div class="background-animation" id="backgroundAnimation"></div>
 
     <div class="container my-4">
-    <div class="row mb-3">
+    <div class="row mb-3 sticky-header">
         <div class="col-md-6">
         <input type="text" id="searchInput" class="form-control" placeholder="Search...">
         </div>
@@ -175,7 +184,7 @@
                 <img src="${item.Avatar}" class="card-img-top" alt="${item.Name}">
             </div>
             <div class="card-body text-center">
-                <h5 class="card-title">${item.Name}</h5>
+                <h5 class="card-title">${item.Name} '${item.Batch%100}</h5>
                 <p class="card-text">${item.BioText}</p>
                 <p><strong>Email:</strong> ${item.Email}</p>
                 <p><strong>Phone:</strong> ${item.PhoneNumber}</p>
