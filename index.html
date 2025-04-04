@@ -96,29 +96,33 @@
             popup.style.top = '50%';
             popup.style.left = '50%';
             popup.style.transform = 'translate(-50%, -50%)';
-            popup.style.background = '#34012f';
+            popup.style.background = '#24001f';
             popup.style.color = '#ffffff';
-            popup.style.padding = '20px';
-            popup.style.borderRadius = '10px';
-            popup.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+            popup.style.padding = '30px';
+            popup.style.borderRadius = '15px';
+            popup.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.6)';
             popup.style.zIndex = '1000';
+            popup.style.width = '90%';
+            popup.style.maxWidth = '500px';
 
             popup.innerHTML = `
-            <h3 style="text-align: center; margin-bottom: 20px;">Enter Your Details</h3>
-            <form id="popupForm" style="display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 500px; margin: 0 auto;">
-                <div style="display: flex; flex-direction: column;">
-                <label for="fname" style="margin-bottom: 5px; font-weight: bold;">First Name:</label>
-                <input type="text" id="fname" required style="padding: 10px; border: none; border-radius: 5px; background: #24001f; color: #ffffff; width: 100%;">
+            <h3 class="text-center mb-4" style="font-size: 1.5rem; font-weight: bold;">Enter Your Details</h3>
+            <form id="popupForm" class="d-flex flex-column gap-3 mx-auto" style="width: 100%;">
+                <div>
+                    <label for="fname" class="form-label fw-bold" style="margin-bottom: 5px;">First Name:</label>
+                    <input type="text" id="fname" class="form-control" required style="background: #34012f; color: #ffffff; border: 1px solid #5a0050; border-radius: 5px; padding: 10px;">
                 </div>
-                <div style="display: flex; flex-direction: column;">
-                <label for="mname" style="margin-bottom: 5px; font-weight: bold;">Middle Name:</label>
-                <input type="text" id="mname" style="padding: 10px; border: none; border-radius: 5px; background: #24001f; color: #ffffff; width: 100%;">
+                <div>
+                    <label for="mname" class="form-label fw-bold" style="margin-bottom: 5px;">Middle Name:</label>
+                    <input type="text" id="mname" class="form-control" style="background: #34012f; color: #ffffff; border: 1px solid #5a0050; border-radius: 5px; padding: 10px;">
                 </div>
-                <div style="display: flex; flex-direction: column;">
-                <label for="lname" style="margin-bottom: 5px; font-weight: bold;">Last Name:</label>
-                <input type="text" id="lname" required style="padding: 10px; border: none; border-radius: 5px; background: #24001f; color: #ffffff; width: 100%;">
+                <div>
+                    <label for="lname" class="form-label fw-bold" style="margin-bottom: 5px;">Last Name:</label>
+                    <input type="text" id="lname" class="form-control" required style="background: #34012f; color: #ffffff; border: 1px solid #5a0050; border-radius: 5px; padding: 10px;">
                 </div>
-                <button type="submit" style="padding: 10px; border: none; border-radius: 5px; background: #5a0050; color: #ffffff; font-weight: bold; cursor: pointer;">Submit</button>
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-color fw-bold" style="padding: 10px 20px; background: #5a0050; color: #ffffff; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">Submit</button>
+                </div>
             </form>
             `;
 
