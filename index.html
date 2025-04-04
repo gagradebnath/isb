@@ -84,14 +84,14 @@
             <a href="explore.html" class="btn btn-color btn-lg">Explore Alumni</a>
         </div>
     </div>
-
+    var popup = null; // Declare popup variable in the global scope
 
     <script>
         document.querySelector('.btn-color').addEventListener('click', (e) => {
             e.preventDefault();
 
             // Create a popup form
-            const popup = document.createElement('div');
+            popup = document.createElement('div');
             popup.style.position = 'fixed';
             popup.style.top = '50%';
             popup.style.left = '50%';
@@ -113,7 +113,7 @@
                     <input type="text" id="fname" class="form-control" required style="background: #34012f; color: #ffffff; border: 1px solid #5a0050; border-radius: 5px; padding: 10px;">
                 </div>
                 <div>
-                    <label for="mname" class="form-label fw-bold" style="margin-bottom: 5px;">Middle Name:</label>
+                    <label for="mname" class="form-label fw-bold" style="margin-bottom: 5px;">Middle Name: (if any)</label>
                     <input type="text" id="mname" class="form-control" style="background: #34012f; color: #ffffff; border: 1px solid #5a0050; border-radius: 5px; padding: 10px;">
                 </div>
                 <div>
@@ -131,9 +131,26 @@
             document.getElementById('popupForm').addEventListener('submit', async (event) => {
                 event.preventDefault();
 
-                const fname = document.getElementById('fname').value;
-                const mname = document.getElementById('mname').value || 'n/a';
-                const lname = document.getElementById('lname').value;
+                fname = document.getElementById('fname').value;
+                mname = document.getElementById('mname').value || 'n/a';
+                lname = document.getElementById('lname').value;
+
+                // if first name has two words, split them and put the second word in middle name
+                if (fname.split(' ').length > 1) {
+                    
+                    const names = fname.split(' ');
+                    mname = names[1];
+                    fname = names[0];
+
+                    console.log("fname:", fname);
+                    console.log("mname:", mname);
+                }
+                // if last name has two words, split them and put the first word in middle name
+                if (lname.split(' ').length > 1) {
+                    const names = lname.split(' ');
+                    mname = names[0];
+                    lname = names[1];
+                }
 
                 checkCredentials(fname, mname, lname, 'n/a');
             });
@@ -236,14 +253,16 @@
                         console.log("❌ Invalid credentials.");
 
                         popup.innerHTML = `
-                                <h3 style="text-align: center; margin-bottom: 20px;">Invalid Credentials</h3>
-                                <p style="text-align: center; margin-bottom: 20px;">Please provide your Facebook profile link:</p>
-                                <form id="facebookForm" style="display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 500px; margin: 0 auto;">
-                                    <div style="display: flex; flex-direction: column;">
-                                    <label for="fbLink" style="margin-bottom: 5px; font-weight: bold;">Facebook Profile Link:</label>
-                                    <input type="url" id="fbLink" required style="padding: 10px; border: none; border-radius: 5px; background: #24001f; color: #ffffff; width: 100%;">
+                                <div class="text-center mb-3">
+                                    <h3 class="fw-bold">Invalid Credentials</h3>
+                                    <p>Please provide your Facebook profile link:</p>
+                                </div>
+                                <form id="facebookForm" class="d-flex flex-column gap-3 mx-auto" style="max-width: 500px;">
+                                    <div class="mb-3">
+                                        <label for="fbLink" class="form-label fw-bold">Facebook Profile Link:</label>
+                                        <input type="url" id="fbLink" class="form-control" required style="background: #34012f; color: #ffffff; border: 1px solid #5a0050; border-radius: 5px;">
                                     </div>
-                                    <button type="submit" style="padding: 10px; border: none; border-radius: 5px; background: #5a0050; color: #ffffff; font-weight: bold; cursor: pointer;">Submit</button>
+                                    <button type="submit" class="btn btn-color fw-bold">Submit</button>
                                 </form>
                             `;
 
@@ -258,7 +277,7 @@
                             if (fbIsValid) {
                                 window.location.href = 'explore.html';
                             } else {
-                                alert('Invalid credentials. Please try again.');
+                                // alert('Invalid credentials. Please try again.');
                             }
                         });
                         return false;
